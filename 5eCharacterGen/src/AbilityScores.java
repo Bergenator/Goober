@@ -1,13 +1,13 @@
 import java.util.*; 
 
 public class AbilityScores 
-{    
-    private int cha;
-    private int dex;
-    private int intel;
-    private int str;
-    private int wis;
-    private int con;
+{   
+    private Score cha;
+    private Score dex;
+    private Score intel;
+    private Score str;
+    private Score wis;
+    private Score con;
     RollRandom myDice;
     
     
@@ -15,146 +15,155 @@ public class AbilityScores
     public AbilityScores(int myCha, int myDex, int myIntel, int myStr, int myWis, int myCon)
     {
         myDice = new RollRandom();
+        
+        cha = new Score();
+        dex = new Score();
+        intel = new Score();
+        str = new Score();
+        wis = new Score();
+        con = new Score();
+        
+        cha.type = Constants.CHA;
+        dex.type = Constants.DEX;
+        intel.type = Constants.INTEL;
+        str.type = Constants.STR;
+        wis.type = Constants.WIS;
+        con.type = Constants.CON;
+        
         if (myCha == -1)
         {
-            cha = myDice.sum(myDice.select(4,3,6,true));
+            cha.value = myDice.sum(myDice.select(4,3,6,true));
         }
         else
         {
-            cha = myCha;
+            cha.value = myCha;
         }
         if (myDex == -1)
         {
-            dex = myDice.sum(myDice.select(4,3,6,true));
+            dex.value = myDice.sum(myDice.select(4,3,6,true));
         }
         else
         {
-            dex = myDex;
+            dex.value = myDex;
         }
         if (myIntel == -1)
         {
-            intel = myDice.sum(myDice.select(4,3,6,true));
+            intel.value = myDice.sum(myDice.select(4,3,6,true));
         }
         else
         {
-            intel = myIntel;
+            intel.value = myIntel;
         }
         if (myStr == -1)
         {
-            str = myDice.sum(myDice.select(4,3,6,true));
+            str.value = myDice.sum(myDice.select(4,3,6,true));
         }
         else
         {
-            str = myStr;
+            str.value = myStr;
         }
         if (myWis == -1)
         {
-            wis = myDice.sum(myDice.select(4,3,6,true));
+            wis.value = myDice.sum(myDice.select(4,3,6,true));
         }
         else
         {
-            wis = myWis;
+            wis.value = myWis;
         }
         if (myCon == -1)
         {
-            con = myDice.sum(myDice.select(4,3,6,true));
+            con.value = myDice.sum(myDice.select(4,3,6,true));
         }
         else
         {
-            con = myCon;
+            con.value = myCon;
         }
     }
     
     public String toString()
     {
         String scores = "";
-        scores += "CHA: " + cha + "\n";
-        scores += "DEX: " + dex + "\n";
-        scores += "INT: " + intel + "\n";
-        scores += "STR: " + str + "\n";
-        scores += "WIS: " + wis + "\n";
-        scores += "CON: " + con + "\n";
+        scores += "CHA: " + cha.value + "\n";
+        scores += "DEX: " + dex.value + "\n";
+        scores += "INT: " + intel.value + "\n";
+        scores += "STR: " + str.value + "\n";
+        scores += "WIS: " + wis.value + "\n";
+        scores += "CON: " + con.value + "\n";
         return scores;
     }
     
     public void setCha(int cha) {
-        this.cha = cha;
+        this.cha.value = cha;
     }
 
     public void setDex(int dex) {
-        this.dex = dex;
+        this.dex.value = dex;
     }
 
     public void setIntel(int intel) {
-        this.intel = intel;
+        this.intel.value = intel;
     }
 
     public void setStr(int str) {
-        this.str = str;
+        this.str.value = str;
     }
 
     public void setWis(int wis) {
-        this.wis = wis;
+        this.wis.value = wis;
     }
 
     public void setCon(int con) {
-        this.con = con;
+        this.con.value = con;
     }
 
     public int getCha() {
-        return cha;
+        return cha.value;
     }
 
     public int getDex() {
-        return dex;
+        return dex.value;
     }
 
     public int getIntel() {
-        return intel;
+        return intel.value;
     }
 
     public int getStr() {
-        return str;
+        return str.value;
     }
 
     public int getWis() {
-        return wis;
+        return wis.value;
     }
 
     public int getCon() {
-        return con;
+        return con.value;
     }
     
     public int[] highestScores()
     {
         int [] highest = new int[3];
-        ArrayList<Integer> scores = new ArrayList<Integer>();
-        ArrayList<Integer> names = new ArrayList<Integer>();
+        ArrayList<Score> scores = new ArrayList<Score>();
         scores.add(cha); // ties will prefer earlier items on the list. Need to find a solution, perhaps randomizing the order?
         scores.add(dex);
         scores.add(intel);
         scores.add(str);
         scores.add(wis);
         scores.add(con);
-        names.add(Constants.CHA);
-        names.add(Constants.DEX);
-        names.add(Constants.INTEL);
-        names.add(Constants.STR);
-        names.add(Constants.WIS);
-        names.add(Constants.CON);
+        
+        Collections.shuffle(scores);
         
         for(int i = 0; i < 3; i++)
         {
             int currentMax = 0;
             for(int j = 0; j < scores.size(); j++)
             {
-                if(scores.get(j) > scores.get(currentMax))
+                if(scores.get(j).value > scores.get(currentMax).value)
                 {
                     currentMax = j;
                 }
             }
-            highest[i] = names.get(currentMax);
-            names.remove(currentMax);
+            highest[i] = scores.get(currentMax).type;
             scores.remove(currentMax);
         }
         
@@ -163,7 +172,7 @@ public class AbilityScores
     
     public static void main(String[] args)
     {
-        /*AbilityScores scores = new AbilityScores(-1,-1,-1,-1,-1,-1);
+        /*AbilityScores scores = new AbilityScores(13,13,13,13,13,13);
         Class myClass = new Class(scores);
         System.out.println(scores.toString());
         System.out.println(Arrays.toString(scores.highestScores()));*/

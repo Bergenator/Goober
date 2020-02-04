@@ -1,5 +1,5 @@
 public class Score 
 {
-    public int name;
+    public int type;
     public int value;
 }
