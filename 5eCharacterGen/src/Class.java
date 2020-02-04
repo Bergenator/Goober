@@ -13,9 +13,9 @@ public class Class
     {
         className = "";
         
-        int barbPoints = 0, bardPoints = 0, clerPoints = 0, druidPoints = 0, fightPoints = 0,
-                monkPoints = 0, palPoints = 0, rangePoints = 0, roguePoints = 0, sorcePoints = 0,
-                warPoints = 0, wizPoints = 0;
+        int barbPoints = 2, bardPoints = 2, clerPoints = 2, druidPoints = 2, fightPoints = 2,
+                monkPoints = 2, palPoints = 2, rangePoints = 2, roguePoints = 2, sorcePoints = 2,
+                warPoints = 2, wizPoints = 2;
         
         boolean barbEleg = true, bardEleg = true, clerEleg = true, druidEleg = true, fightEleg = true,
                 monkEleg = true, palEleg = true, rangeEleg = true, rogueEleg = true, sorceEleg = true,
@@ -28,7 +28,7 @@ public class Class
         if(highest[0] == Constants.STR && highest[1] == Constants.CON || highest[0] == Constants.CON && highest[1] == Constants.STR)
         {
             barbPoints += 20;
-            fightPoints += 10;
+            fightPoints += 2;
         }
        
         if(highest[0] == Constants.DEX && highest[1] == Constants.CHA || highest[0] == Constants.CHA && highest[1] == Constants.DEX)
@@ -50,7 +50,7 @@ public class Class
         }
         if(highest[0] == Constants.DEX && highest[1] == Constants.CON || highest[0] == Constants.CON && highest[1] == Constants.DEX)
         {
-            fightPoints += 10;
+            fightPoints += 2;
         }
         if(highest[0] == Constants.DEX && highest[1] == Constants.WIS || highest[0] == Constants.WIS && highest[1] == Constants.DEX)
         {
@@ -77,39 +77,23 @@ public class Class
         }
         
         // requisites
-        if(myScores.getCha() < 13)
+        /*if(myScores.getCha() < 13)
         {
             sorceEleg = false;
             palEleg = false;
             warEleg = false;
             bardEleg = false;
         }
-        else
-        {
-            sorcePoints += 2;
-            palPoints += 2;
-            warPoints += 2;
-            bardPoints += 2;
-        }
         if(myScores.getDex() < 13)
         {
             monkEleg = false;
             rogueEleg = false;
-        }
-        else
-        {
-            monkPoints += 2;
-            roguePoints += 2;
+            bardEleg = false; // bard just happens too often bro.
         }
         if(myScores.getDex() < 13 && myScores.getStr() < 13)
         {
             fightEleg = false;
             rangeEleg = false;
-        }
-        else
-        {
-            fightPoints += 2;
-            rangePoints += 2;
         }
         if(myScores.getDex() < 13 && myScores.getCon() < 13)
         {
@@ -117,38 +101,18 @@ public class Class
             warEleg = false;
             sorceEleg = false;
         }
-        else
-        {
-            wizPoints += 2;
-            warPoints += 2;
-            sorcePoints += 2;
-        }
-        
         if(myScores.getStr() < 13 && myScores.getCon() < 13)
         {
             clerEleg = false;
-        }
-        else
-        {
-            clerPoints += 2;
         }
         if(myScores.getIntel() < 13)
         {
             wizEleg = false;        
         }
-        else
-        {
-            wizPoints += 2;
-        }
         if(myScores.getStr() < 13)
         {
             barbEleg = false;
             palEleg = false;
-        }
-        else
-        {
-            barbPoints += 2;
-            palPoints += 2;
         }
         if(myScores.getWis() < 13)
         {
@@ -157,33 +121,58 @@ public class Class
             monkEleg = false;
             rangeEleg = false;
         }
-        else
-        {
-            clerPoints += 2;
-            druidPoints += 2;
-            monkPoints += 2;
-            rangePoints += 2;
-        }
         if(myScores.getCon() < 13)
         {
             barbEleg = false;
             fightEleg = false;
             druidEleg = false;
         }
-        else
-        {
-            barbPoints += 2;
-            fightPoints += 2;
-            druidPoints += 2;
-        }
         if(myScores.getIntel() < 13 && myScores.getCha() < 13)
         {
             rogueEleg = false;
-        }
-        else
+        }*/
+        
+        if(myScores.getCha() < 13)
         {
-            roguePoints += 2;
+            bardEleg = false;
+            sorceEleg = false;
+            warEleg = false;
         }
+        if(myScores.getDex() < 14)
+        {
+            rogueEleg = false;
+        }
+        if(myScores.getIntel() < 15)
+        {
+            wizEleg = false;
+        }
+        if(myScores.getStr() < 15)
+        {
+            barbEleg = false;
+        }
+        if(myScores.getWis() < 14)
+        {
+            druidEleg = false;
+            clerEleg = false;
+        }
+        if(myScores.getStr() < 14 && myScores.getDex() < 14)
+        {
+            fightEleg = false;
+        }
+        if(myScores.getWis() < 13 || myScores.getDex() < 13)
+        {
+            monkEleg = false;
+        }
+        if(myScores.getStr() < 13 || myScores.getCha() < 13)
+        {
+            palEleg = false;
+        }
+        if((myScores.getStr() < 13 && myScores.getDex() < 13) || myScores.getWis() < 13)
+        {
+            rangeEleg = false;
+        }
+        
+        
         
         if (!barbEleg)
             barbPoints = 0;
@@ -239,7 +228,7 @@ public class Class
         RollRandom dice = new RollRandom();
         int choice = dice.rollDice(1, wizMax);
         
-        System.out.println("Barb range:" + barbMax);
+        /*System.out.println("Barb range:" + barbMax);
         System.out.println("Bard range:" + bardMax);
         System.out.println("Cleric range:" + clerMax);
         System.out.println("Druid range:" + druidMax);
@@ -250,7 +239,7 @@ public class Class
         System.out.println("Rogue range:" + rogueMax);
         System.out.println("Sorce range:" + sorceMax);
         System.out.println("War range:" + warMax);
-        System.out.println("Wiz range:" + wizMax);
+        System.out.println("Wiz range:" + wizMax);*/
 
 
         

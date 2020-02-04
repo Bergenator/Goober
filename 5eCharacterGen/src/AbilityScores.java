@@ -182,7 +182,7 @@ public class AbilityScores
                 rogueCount = 0, sorceCount = 0, warCount = 0, wizCount = 0;
         int nope = 0;
         
-        for(int i = 0; i < 200; i++)
+        for(int i = 0; i < 500; i++)
         {
             AbilityScores scores = new AbilityScores(-1,-1,-1,-1,-1,-1);
             Class myClass = new Class(scores);
