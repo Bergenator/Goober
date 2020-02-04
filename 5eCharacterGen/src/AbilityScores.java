@@ -244,6 +244,9 @@ public class AbilityScores
         System.out.println(nope + " characters were not assigned a class.");
         
         
+        // random comment...
+        
+        
     }
 }
 
