@@ -150,7 +150,7 @@ public class Class
         {
             barbEleg = false;
         }
-        if(myScores.getWis() < 14)
+        if(myScores.getWis() < 14) //decrease threshhold after adding race bonuses (none to WIS)
         {
             druidEleg = false;
             clerEleg = false;

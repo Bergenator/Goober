@@ -177,7 +177,7 @@ public class AbilityScores
         System.out.println(scores.toString());
         System.out.println(Arrays.toString(scores.highestScores()));*/
         
-        int barbCount = 0, bardCount = 0, clerCount = 0, druidCount = 0,
+        /*int barbCount = 0, bardCount = 0, clerCount = 0, druidCount = 0,
                 fightCount = 0, monkCount = 0, palCount = 0, rangeCount = 0,
                 rogueCount = 0, sorceCount = 0, warCount = 0, wizCount = 0;
         int nope = 0;
@@ -250,7 +250,28 @@ public class AbilityScores
         System.out.println("Sorcerer:" + sorceCount);
         System.out.println("Warlock:" + warCount);
         System.out.println("Wizard:" + wizCount);
-        System.out.println(nope + " characters were not assigned a class.");
+        System.out.println(nope + " characters were not assigned a class.");*/
+        
+        Alignment alignment0 = new Alignment(0,0);
+        System.out.println(alignment0.toString());
+        alignment0 = new Alignment(0,1);
+        System.out.println(alignment0.toString());
+        alignment0 = new Alignment(0,2);
+        System.out.println(alignment0.toString());
+        alignment0 = new Alignment(1,0);
+        System.out.println(alignment0.toString());
+        alignment0 = new Alignment(1,1);
+        System.out.println(alignment0.toString());
+        alignment0 = new Alignment(1,2);
+        System.out.println(alignment0.toString());
+        alignment0 = new Alignment(2,0);
+        System.out.println(alignment0.toString());
+        alignment0 = new Alignment(2,1);
+        System.out.println(alignment0.toString());
+        alignment0 = new Alignment(2,2);
+        System.out.println(alignment0.toString());
+        alignment0 = new Alignment(3,-1);
+        System.out.println(alignment0.toString());
         
         
         // random comment...

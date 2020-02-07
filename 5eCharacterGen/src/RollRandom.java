@@ -22,7 +22,6 @@ public class RollRandom
         for(int i = 1; i <= numDice; i++)
         {
             int rand = ((int)(Math.random()*(dieMax)))+1;
-            System.out.println(rand + " ");
             total += rand;
         }
         return total;
